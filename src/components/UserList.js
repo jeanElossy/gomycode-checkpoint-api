@@ -54,7 +54,7 @@ const UserList = () => {
 
     return (
         <div className="user--list">
-            <nav className="navbar navbar-light bg-light p-5">
+            <nav className="navbar navbar-light bg-light p-4">
                 <div className="container--fluid">
                     <div className="title">
                         <h1 className="h4">Les coordonnees des utlisateurs apres communiation avec l'API Jsonplaceholder</h1>
@@ -62,11 +62,18 @@ const UserList = () => {
                 </div>
             </nav>
             <div className="container mt-5">
-                <div className="row gap-4 justify-content-md-center mb-4">
+                <div className="row gap-4 justify-content-md-center mb-5">
 
                     {listOfUser.map((user) => (
-                        <div key={user.id} className="card gap-2 col-12 col-md-5 p-4">
-                            <h2 className="text-center text-danger">{user.name}</h2>
+                        <div 
+                            key={user.id} 
+                            className="card gap-2 col-12 col-md-5 p-4" 
+                            data-aos="fade-down-left"
+                        >
+                            <h2 
+                                className="text-center text-danger">
+                                {user.name}
+                            </h2>
                             <p>
                                 Prenom: {""} 
                                 <strong>
@@ -105,5 +112,4 @@ const UserList = () => {
         </div>
     )
 }
-
 export default UserList
