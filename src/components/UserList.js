@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 
 const UserList = () => {
 
-    const [data, setData] = useState([])
+    const [listOfUser, setListOfUser] = useState([])
 
  //premiere maniere de communication avec API avec axios en utilisant async et await 
     useEffect(() => {
@@ -18,15 +18,14 @@ const UserList = () => {
             });
             
             // si l'appel a reussir on stock le resultat (res) dans data
-            setData(resutlt.data);            
+            setListOfUser(resutlt.data);            
         };
         // la fonction se lance ici 
         getData();
 
         //le tableau vide sert a eviter une boucle infinie
     }, [])
-
-    console.log(data)
+    console.log(listOfUser)
 
     /*
  //deusieme maniere de communication avec API avec axios en utilisant then et catch
@@ -54,12 +53,55 @@ const UserList = () => {
 
 
     return (
-        <div>
-            {data.map((user) => (
-                <div key={user.id}>
-                    <p>{user.name}</p>
+        <div className="user--list">
+            <nav className="navbar navbar-light bg-light p-5">
+                <div className="container--fluid">
+                    <div className="title">
+                        <h1 className="h4">Les coordonnees des utlisateurs apres communiation avec l'API Jsonplaceholder</h1>
+                    </div>
                 </div>
-            ))}
+            </nav>
+            <div className="container mt-5">
+                <div className="row gap-4 justify-content-md-center mb-4">
+
+                    {listOfUser.map((user) => (
+                        <div key={user.id} className="card gap-2 col-12 col-md-5 p-4">
+                            <h2 className="text-center text-danger">{user.name}</h2>
+                            <p>
+                                Prenom: {""} 
+                                <strong>
+                                    {user.username}
+                                </strong> 
+                            </p>
+                            <p>
+                                Email: {""} 
+                                <strong>
+                                    {user.email}
+                                </strong>
+                            </p>
+                            <p>
+                                Numero: {""} 
+                                <strong>
+                                    {user.phone}
+                                </strong>
+                            </p>
+                            <p> 
+                                Addresse: {""} 
+                                <strong>
+                                    {user.address.street}
+                                </strong>
+                            </p>
+                            <p>
+                                Site internet: {""} 
+                                <strong>
+                                    {user.website}
+                                </strong>
+                            </p>
+                        </div>
+                    ))}
+
+                </div>
+            </div> 
         </div>
     )
 }
